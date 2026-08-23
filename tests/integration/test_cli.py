@@ -37,7 +37,7 @@ def test_check_pass_exit_0(tmp_path) -> None:
 
 
 @pytest.mark.integration
-def test_check_block_exit_2(tmp_path) -> None:
+def test_check_block_exit_4(tmp_path) -> None:
     context_file = tmp_path / "context.txt"
     context_file.write_text(
         "The Eiffel Tower is located in Paris and was completed in 1889.", encoding="utf-8"
@@ -49,7 +49,7 @@ def test_check_block_exit_2(tmp_path) -> None:
         "--context", str(context_file),
         "--json",
     )
-    assert proc.returncode == 2, proc.stderr
+    assert proc.returncode == 4, proc.stderr
     assert json.loads(proc.stdout)["verdict"] == "BLOCK"
 
 
@@ -61,7 +61,7 @@ def test_check_consistency_mode_no_context() -> None:
         "--response", "The meeting is on Tuesday. The meeting is on Friday.",
         "--json",
     )
-    assert proc.returncode in (1, 2), proc.stderr
+    assert proc.returncode in (1, 4), proc.stderr
     assert json.loads(proc.stdout)["mode_used"] == "consistency"
 
 

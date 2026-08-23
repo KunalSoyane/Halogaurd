@@ -73,6 +73,7 @@ class Firewall:
         start = time.perf_counter()
         self._validate_inputs(prompt, response, context)
         mode = self._resolve_mode(context)
+        
         if not response.strip():
             return FirewallResult(
                 score=0.0,
@@ -81,6 +82,19 @@ class Firewall:
                 mode_used=mode,
                 latency_ms=(time.perf_counter() - start) * 1000.0,
             )
+            
+        # BUG FIX: Short-circuit placed before any model loading or subscoring
+        if mode == MODE_CONSISTENCY:
+            sentences = [s for s in response.split(".") if s.strip()]
+            if len(sentences) < 2:
+                return FirewallResult(
+                    score=0.0,
+                    verdict=VERDICT_PASS,
+                    reason="response too short for self-consistency check",
+                    mode_used=mode,
+                    latency_ms=(time.perf_counter() - start) * 1000.0,
+                )
+                
         scorer = self._scorers.get(mode)
         if scorer is None:
             raise HaloGuardError(f"mode '{mode}' is not implemented yet")
@@ -149,7 +163,7 @@ class Firewall:
 
     def _unknown(self, mode: str, start: float, detail: str) -> FirewallResult:
         return FirewallResult(
-            score=1.0,
+            score=0.0,
             verdict=VERDICT_UNKNOWN,
             reason=f"scoring failed (fail-open): {detail}",
             mode_used=mode,
