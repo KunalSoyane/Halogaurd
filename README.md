@@ -1,3 +1,5 @@
+[![PyPI version](https://img.shields.io/pypi/v/haloguard.svg)](https://pypi.org/project/haloguard/)
+[![Python](https://img.shields.io/pypi/pyversions/haloguard.svg)](https://pypi.org/project/haloguard/)
 # HaloGuard
 
 A local-first hallucination firewall for LLM applications. HaloGuard sits between an
@@ -20,12 +22,13 @@ Mode is selected automatically by input shape (`auto`), or set explicitly.
 pip install haloguard
 ```
 
-One-time model setup (builds the ONNX artifact into your local cache):
+The model downloads automatically on first use (~160 MB, cached locally).
+No manual setup required.
 
-```bash
+If you want to rebuild the ONNX artifact from source instead:
+
 pip install "haloguard[export]"
-python scripts/export_onnx.py
-```
+python -c "import runpy; runpy.run_module('haloguard.scripts.export_onnx')"
 
 ## SDK quickstart
 
