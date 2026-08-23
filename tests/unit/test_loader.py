@@ -17,6 +17,10 @@ def test_model_dir_env_override(monkeypatch: pytest.MonkeyPatch, tmp_path: Path)
 
 def test_missing_artifacts_raise(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.setenv("HALOGUARD_MODEL_DIR", str(tmp_path))
+    
+    # Force the registry to act as if no HF repo is pinned, triggering local export error
+    monkeypatch.setattr("haloguard.models.registry.HF_REPO", None)
+    
     with pytest.raises(ModelLoadError, match="export_onnx"):
         ensure_model()
 

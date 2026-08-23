@@ -149,7 +149,7 @@ class Firewall:
 
     def _unknown(self, mode: str, start: float, detail: str) -> FirewallResult:
         return FirewallResult(
-            score=1.0,
+            score=0.0,
             verdict=VERDICT_UNKNOWN,
             reason=f"scoring failed (fail-open): {detail}",
             mode_used=mode,
