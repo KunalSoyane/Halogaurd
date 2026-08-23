@@ -1,0 +1,15 @@
+{"context": "The Eiffel Tower is located in Paris and was completed in 1889.", "response": "The Eiffel Tower is in Paris.", "label": 0}
+{"context": "Water boils at 100 degrees Celsius at sea level pressure.", "response": "At sea level, water boils at 100 degrees Celsius.", "label": 0}
+{"context": "Marie Curie won the Nobel Prize in Physics in 1903 and in Chemistry in 1911.", "response": "Marie Curie won two Nobel Prizes.", "label": 0}
+{"context": "The company reported revenue of $4.2 billion in Q3 2025, up 12% year over year.", "response": "The company's Q3 2025 revenue was $4.2 billion, a 12% increase over the prior year.", "label": 0}
+{"context": "Photosynthesis converts carbon dioxide and water into glucose and oxygen using sunlight.", "response": "Plants use sunlight to convert carbon dioxide and water into glucose and oxygen.", "label": 0}
+{"context": "The meeting is scheduled for Tuesday at 3 PM in Conference Room B.", "response": "The meeting takes place on Tuesday at 3 PM.", "label": 0}
+{"context": "Python 3.12 was released in October 2023.", "response": "Python 3.12 came out in October 2023.", "label": 0}
+{"context": "The patient's blood pressure was 120/80 and their heart rate was 72 beats per minute.", "response": "The patient had a heart rate of 72 beats per minute.", "label": 0}
+{"context": "The Eiffel Tower is located in Paris and was completed in 1889.", "response": "The Eiffel Tower was completed in 1923 and is located in Lyon.", "label": 1}
+{"context": "Water boils at 100 degrees Celsius at sea level pressure.", "response": "Water boils at 50 degrees Celsius at sea level.", "label": 1}
+{"context": "Marie Curie won the Nobel Prize in Physics in 1903 and in Chemistry in 1911.", "response": "Marie Curie won three Nobel Prizes, all in Physics.", "label": 1}
+{"context": "The company reported revenue of $4.2 billion in Q3 2025, up 12% year over year.", "response": "The company reported a loss of $1 billion in Q3 2025.", "label": 1}
+{"context": "Photosynthesis converts carbon dioxide and water into glucose and oxygen using sunlight.", "response": "Photosynthesis converts oxygen and glucose into carbon dioxide using moonlight.", "label": 1}
+{"context": "The meeting is scheduled for Tuesday at 3 PM in Conference Room B.", "response": "The meeting is scheduled for Friday at 9 AM in the main auditorium.", "label": 1}
+{"context": "Python 3.12 was released in October 2023.", "response": "Python 3.12 was released in October 2023 and introduced built-in quantum computing support.", "label": 1}
