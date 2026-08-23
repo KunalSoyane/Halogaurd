@@ -13,3 +13,4 @@ venv/
 *.bin
 HaloGuard_System_Architecture.docx
 *.data
+dist/
