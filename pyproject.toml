@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "haloguard"
-version = "0.1.2"
+version = "0.1.3"
 description = "Local-first hallucination firewall for LLM applications"
 readme = "README.md"
 license = "MIT"
@@ -54,9 +54,6 @@ Changelog = "https://github.com/KunalSoyane/Halogaurd/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/haloguard"]
-artifacts = [
-    "scripts/*.py",
-]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

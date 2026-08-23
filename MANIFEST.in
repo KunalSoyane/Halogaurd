@@ -4,4 +4,3 @@ exclude *.docx
 prune .mypy_cache
 prune .pytest_cache
 prune .ruff_cache
-include scripts/export_onnx.py

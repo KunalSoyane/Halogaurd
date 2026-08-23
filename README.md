@@ -61,7 +61,7 @@ haloguard check ... --json                                      # machine-readab
 haloguard version
 ```
 
-Exit codes: `0` PASS / `1` FLAG / `2` BLOCK / `3` internal error (incl. UNKNOWN).
+Exit codes: `0` PASS / `1` FLAG / `4` BLOCK / `3` internal error (incl. UNKNOWN).
 
 ## Framework hooks
 
