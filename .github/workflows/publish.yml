@@ -77,7 +77,7 @@ jobs:
           Path("release_notes.md").write_text(body + "\n", encoding="utf-8")
           EOF
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           body_path: release_notes.md
           files: dist/*
