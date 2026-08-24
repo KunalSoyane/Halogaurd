@@ -98,7 +98,7 @@ def main() -> None:
     rows = []
     pairs = [(p["context"], p["response"]) for p in PAIRS]
     scores = model.predict(pairs, apply_softmax=True)
-    for p, s in zip(PAIRS, scores):
+    for p, s in zip(PAIRS, scores, strict=True):
         risk = 1.0 - float(s[ent_idx])
         rows.append(
             {
