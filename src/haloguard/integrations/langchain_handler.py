@@ -5,7 +5,8 @@ Requires the `langchain` extra: pip install haloguard[langchain]
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 from uuid import UUID
 
 from haloguard.core.exceptions import HaloGuardError

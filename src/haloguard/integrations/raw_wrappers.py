@@ -6,7 +6,8 @@ which guarded_call() then scores. No client SDK is imported here.
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from haloguard.core.exceptions import HaloGuardError
 from haloguard.core.firewall import Firewall
