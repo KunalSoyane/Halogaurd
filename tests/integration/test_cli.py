@@ -24,9 +24,12 @@ def test_check_pass_exit_0(tmp_path) -> None:
     )
     proc = run_cli(
         "check",
-        "--prompt", "Where is the Eiffel Tower?",
-        "--response", "The Eiffel Tower is in Paris.",
-        "--context", str(context_file),
+        "--prompt",
+        "Where is the Eiffel Tower?",
+        "--response",
+        "The Eiffel Tower is in Paris.",
+        "--context",
+        str(context_file),
         "--json",
     )
     assert proc.returncode == 0, proc.stderr
@@ -44,9 +47,12 @@ def test_check_block_exit_4(tmp_path) -> None:
     )
     proc = run_cli(
         "check",
-        "--prompt", "Where is the Eiffel Tower?",
-        "--response", "The Eiffel Tower was completed in 1923 and is located in Lyon.",
-        "--context", str(context_file),
+        "--prompt",
+        "Where is the Eiffel Tower?",
+        "--response",
+        "The Eiffel Tower was completed in 1923 and is located in Lyon.",
+        "--context",
+        str(context_file),
         "--json",
     )
     assert proc.returncode == 4, proc.stderr
@@ -57,8 +63,10 @@ def test_check_block_exit_4(tmp_path) -> None:
 def test_check_consistency_mode_no_context() -> None:
     proc = run_cli(
         "check",
-        "--prompt", "When is the meeting?",
-        "--response", "The meeting is on Tuesday. The meeting is on Friday.",
+        "--prompt",
+        "When is the meeting?",
+        "--response",
+        "The meeting is on Tuesday. The meeting is on Friday.",
         "--json",
     )
     assert proc.returncode in (1, 4), proc.stderr

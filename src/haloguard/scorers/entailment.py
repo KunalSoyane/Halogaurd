@@ -47,9 +47,7 @@ def predict_nli(pairs: Sequence[tuple[str, str]]) -> list[dict[str, float]]:
     encodings = [tokenizer.encode(premise, hypothesis) for premise, hypothesis in pairs]
     width = max(len(e.ids) for e in encodings)
     input_ids = [e.ids + [_PAD_TOKEN_ID] * (width - len(e.ids)) for e in encodings]
-    attention_mask = [
-        e.attention_mask + [0] * (width - len(e.attention_mask)) for e in encodings
-    ]
+    attention_mask = [e.attention_mask + [0] * (width - len(e.attention_mask)) for e in encodings]
     logits_batch = session.run(
         ["logits"], {"input_ids": input_ids, "attention_mask": attention_mask}
     )[0]

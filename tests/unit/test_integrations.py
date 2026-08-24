@@ -19,9 +19,7 @@ def test_langchain_handler_records_and_blocks() -> None:
     from haloguard.integrations.langchain_handler import HaloGuardCallbackHandler
 
     generations = lc.outputs.Generation
-    handler = HaloGuardCallbackHandler(
-        firewall=Firewall(), context_provider=lambda _text: CONTEXT
-    )
+    handler = HaloGuardCallbackHandler(firewall=Firewall(), context_provider=lambda _text: CONTEXT)
 
     ok_run = uuid4()
     handler.on_llm_end(

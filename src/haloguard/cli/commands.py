@@ -46,13 +46,13 @@ def check(
     json_output: bool = typer.Option(False, "--json", help="Machine-readable JSON on stdout"),
 ) -> None:
     """Score one LLM response for hallucination risk."""
-    
+
     # BUG FIX: Explicitly read context to a string in memory
     context_data = ""
     if context:
-        with open(context, "r", encoding="utf-8") as f:
+        with open(context, encoding="utf-8") as f:
             context_data = f.read()
-            
+
     try:
         firewall = Firewall(
             threshold=threshold, block_threshold=block_threshold, strict_mode=strict
@@ -65,13 +65,13 @@ def check(
         else:
             typer.echo(f"error: {exc}", err=True)
         raise typer.Exit(3) from exc
-        
+
     if json_output:
         typer.echo(json.dumps(asdict(result)))
     else:
         typer.echo(f"{result.verdict} score={result.score:.4f} mode={result.mode_used}")
         typer.echo(result.reason, err=True)
-        
+
     raise typer.Exit(_EXIT_CODES[result.verdict])
 
 

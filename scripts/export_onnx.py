@@ -30,6 +30,7 @@ def default_out_dir() -> Path:
 def default_calibration_data() -> Path:
     return Path(__file__).parent.parent / "tests" / "golden_dataset" / "calibration_pairs.jsonl"
 
+
 def sha256_of(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as f:
@@ -76,7 +77,9 @@ def main() -> None:
     tokenizer.enable_truncation(max_length=MAX_SEQUENCE_LENGTH)
     calibration_pairs = [
         (item["context"], item["response"])
-        for item in map(json.loads, Path(args.calibration_data).read_text(encoding="utf-8").splitlines())
+        for item in map(
+            json.loads, Path(args.calibration_data).read_text(encoding="utf-8").splitlines()
+        )
         if item
     ]
 

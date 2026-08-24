@@ -1,7 +1,9 @@
 """HaloGuard: a local-first hallucination firewall for LLM applications."""
 
 from __future__ import annotations
-from importlib.metadata import version, PackageNotFoundError
+
+from importlib.metadata import PackageNotFoundError, version
+
 from haloguard.core.config import Config
 from haloguard.core.exceptions import (
     ConfigError,

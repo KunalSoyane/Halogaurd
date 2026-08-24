@@ -74,9 +74,7 @@ def ensure_model() -> ModelPaths:
             raise ModelLoadError(f"model artifact missing after download: {path}")
         actual = _sha256(path)
         if actual != expected:
-            raise ModelLoadError(
-                f"checksum mismatch for {path}: expected {expected}, got {actual}"
-            )
+            raise ModelLoadError(f"checksum mismatch for {path}: expected {expected}, got {actual}")
     return ModelPaths(
         model=directory / registry.INFERENCE_ARTIFACT,
         tokenizer=directory / "tokenizer.json",

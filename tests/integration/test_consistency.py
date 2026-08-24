@@ -43,8 +43,6 @@ def test_auto_mode_selects_by_context() -> None:
     with_context = fw.check(
         "p", "The Eiffel Tower is in Paris.", context="The Eiffel Tower is in Paris."
     )
-    without_context = fw.check(
-        "p", "The Eiffel Tower is in Paris. It was completed in 1889."
-    )
+    without_context = fw.check("p", "The Eiffel Tower is in Paris. It was completed in 1889.")
     assert with_context.mode_used == "entailment"
     assert without_context.mode_used == "consistency"

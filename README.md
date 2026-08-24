@@ -71,14 +71,17 @@ Exit codes: `0` PASS / `1` FLAG / `4` BLOCK / `3` internal error (incl. UNKNOWN)
 ```python
 # LangChain:  pip install "haloguard[langchain]"
 from haloguard.integrations.langchain_handler import HaloGuardCallbackHandler
+
 handler = HaloGuardCallbackHandler(context_provider=lambda _text: retrieved_context)
 
 # LlamaIndex-style query responses (duck-typed, no hard dependency)
 from haloguard.integrations.llamaindex_handler import HaloGuardQueryHook
+
 result = HaloGuardQueryHook().check_response(query_response)
 
 # Any client SDK: adapt to generate(prompt) -> str, then score
 from haloguard.integrations.raw_wrappers import guarded_call, openai_generate
+
 response, result = guarded_call(openai_generate(client), prompt, context=context)
 ```
 
