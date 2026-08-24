@@ -1,4 +1,4 @@
-"""CLI entry points. Exit codes: 0 PASS / 1 FLAG / 2 BLOCK / 3 internal error."""
+"""CLI entry points. Exit codes: 0 PASS / 1 FLAG / 4 BLOCK / 3 internal error."""
 
 from __future__ import annotations
 
@@ -24,7 +24,8 @@ app = typer.Typer(
     help="HaloGuard: local-first hallucination firewall for LLM applications.",
 )
 
-_EXIT_CODES = {VERDICT_PASS: 0, VERDICT_FLAG: 1, VERDICT_BLOCK: 2, VERDICT_UNKNOWN: 3}
+# BUG FIX: Changed VERDICT_BLOCK from 2 to 4 to avoid clashing with Typer's syntax error code (2)
+_EXIT_CODES = {VERDICT_PASS: 0, VERDICT_FLAG: 1, VERDICT_BLOCK: 4, VERDICT_UNKNOWN: 3}
 
 
 @app.command()
@@ -45,23 +46,32 @@ def check(
     json_output: bool = typer.Option(False, "--json", help="Machine-readable JSON on stdout"),
 ) -> None:
     """Score one LLM response for hallucination risk."""
-    context_text = context.read_text(encoding="utf-8") if context is not None else None
+    
+    # BUG FIX: Explicitly read context to a string in memory
+    context_data = ""
+    if context:
+        with open(context, "r", encoding="utf-8") as f:
+            context_data = f.read()
+            
     try:
         firewall = Firewall(
             threshold=threshold, block_threshold=block_threshold, strict_mode=strict
         )
-        result = firewall.check(prompt, response, context_text)
+        # Pass the extracted string (or None) into the check method
+        result = firewall.check(prompt, response, context_data if context_data else None)
     except HaloGuardError as exc:
         if json_output:
             typer.echo(json.dumps({"error": str(exc)}))
         else:
             typer.echo(f"error: {exc}", err=True)
         raise typer.Exit(3) from exc
+        
     if json_output:
         typer.echo(json.dumps(asdict(result)))
     else:
         typer.echo(f"{result.verdict} score={result.score:.4f} mode={result.mode_used}")
         typer.echo(result.reason, err=True)
+        
     raise typer.Exit(_EXIT_CODES[result.verdict])
 
 

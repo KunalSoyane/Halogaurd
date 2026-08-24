@@ -18,7 +18,7 @@ def _load_pairs() -> list[dict]:
 def test_verdicts_match_hand_labels() -> None:
     fw = Firewall(mode="entailment")
     pairs = _load_pairs()
-    assert len(pairs) == 15
+    assert len(pairs) == 17
 
     faithful_risks: list[float] = []
     hallucination_risks: list[float] = []

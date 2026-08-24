@@ -5,11 +5,13 @@ import pytest
 from haloguard.models import registry
 from haloguard.models.loader import model_dir
 
-
 def _model_available() -> bool:
-    directory = model_dir()
-    return all((directory / name).is_file() for name in registry.ARTIFACT_SHA256)
-
+    try:
+        from haloguard.models.loader import ensure_model
+        ensure_model()
+        return True
+    except Exception:
+        return False
 
 def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:
     if _model_available():

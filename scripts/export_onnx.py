@@ -28,8 +28,7 @@ def default_out_dir() -> Path:
 
 
 def default_calibration_data() -> Path:
-    return Path(__file__).parent.parent / "tests" / "golden_dataset" / "labeled_pairs.jsonl"
-
+    return Path(__file__).parent.parent / "tests" / "golden_dataset" / "calibration_pairs.jsonl"
 
 def sha256_of(path: Path) -> str:
     digest = hashlib.sha256()

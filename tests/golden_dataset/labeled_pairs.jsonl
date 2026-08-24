@@ -13,3 +13,5 @@
 {"context": "Photosynthesis converts carbon dioxide and water into glucose and oxygen using sunlight.", "response": "Photosynthesis converts oxygen and glucose into carbon dioxide using moonlight.", "label": 1}
 {"context": "The meeting is scheduled for Tuesday at 3 PM in Conference Room B.", "response": "The meeting is scheduled for Friday at 9 AM in the main auditorium.", "label": 1}
 {"context": "Python 3.12 was released in October 2023.", "response": "Python 3.12 was released in October 2023 and introduced built-in quantum computing support.", "label": 1}
+{"context": "The drug reduced symptoms in 68% of patients in the trial.", "response": "The trial showed the drug helped roughly two-thirds of patients.", "label": 0}
+{"context": "The drug reduced symptoms in 68% of patients in the trial.", "response": "The trial showed the drug helped the vast majority of patients, over 80%.", "label": 1}

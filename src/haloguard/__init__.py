@@ -1,7 +1,7 @@
 """HaloGuard: a local-first hallucination firewall for LLM applications."""
 
 from __future__ import annotations
-
+from importlib.metadata import version, PackageNotFoundError
 from haloguard.core.config import Config
 from haloguard.core.exceptions import (
     ConfigError,
@@ -13,7 +13,10 @@ from haloguard.core.exceptions import (
 from haloguard.core.firewall import Firewall
 from haloguard.core.result import FirewallInput, FirewallResult
 
-__version__ = "0.1.0"
+try:
+    __version__ = version("haloguard")
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 __all__ = [
     "Config",
